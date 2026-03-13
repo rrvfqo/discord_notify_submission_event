@@ -1,11 +1,12 @@
 
 import sys
+import os
 import requests
 
 from get_new_submission_announcement import check_new_announcements  # 匯入函式
 
 def notify_discord_webhook(msg):
-    url = 'https://discord.com/api/webhooks/1419937173335048202/L781zA5VDImEWmUs6hVk6VUST-rZ_y4Ip7V9AlwYAVuH4qE67Go9xctwXrMYZaNGd-RX'
+    url = os.getenv('DISCORD_WEBHOOK_URL')
     headers = {"Content-Type": "application/json"}
     data = {"content": msg, "username": "公告-送件申請"}
     res = requests.post(url, headers = headers, json = data) 
